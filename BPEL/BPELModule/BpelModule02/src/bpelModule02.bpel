@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<process
+    name="bpelModule02"
+    targetNamespace="http://enterprise.netbeans.org/bpel/BpelModule02/bpelModule02"
+    xmlns:tns="http://enterprise.netbeans.org/bpel/BpelModule02/bpelModule02"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+    xmlns:sxt="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Trace" 
+    xmlns:sxed="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor2"
+    xmlns:sxat="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Attachment"
+    xmlns:sxeh="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/ErrorHandling" xmlns:ns0="http://rs.udc.es/crm" xmlns:ns1="http://rs.udc.es/delivery" xmlns:ns2="http://rs.udc.es/reward" xmlns:ns3="http://enterprise.netbeans.org/bpel/WizardCorrelationProperties">
+    <import namespace="http://j2ee.netbeans.org/wsdl/BpelModule02/src/ClientService" location="ClientService.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://rs.udc.es/reward" location="RewardService.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://rs.udc.es/delivery" location="DeliveryService.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://rs.udc.es/crm" location="CrmService.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://rs.udc.es/reward" location="RewardService.xsd" importType="http://www.w3.org/2001/XMLSchema"/>
+    <import namespace="http://rs.udc.es/delivery" location="DeliveryService.xsd" importType="http://www.w3.org/2001/XMLSchema"/>
+    <import namespace="http://rs.udc.es/crm" location="CrmService.xsd" importType="http://www.w3.org/2001/XMLSchema"/>
+    <import namespace="http://enterprise.netbeans.org/bpel/CrmServiceWrapper" location="CrmServiceWrapper.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://enterprise.netbeans.org/bpel/RewardServiceWrapper" location="RewardServiceWrapper.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://enterprise.netbeans.org/bpel/DeliveryServiceWrapper" location="DeliveryServiceWrapper.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://j2ee.netbeans.org/wsdl/BpelModule02/src/NoticeShipmentStarted" location="NoticeShipmentStarted.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://j2ee.netbeans.org/wsdl/BpelModule02/src/NoticeShipmentFinish" location="NoticeShipmentFinish.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://enterprise.netbeans.org/bpel/WizardCorrelationProperties" location="WizardCorrelationProperties.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <partnerLinks>
+        <partnerLink name="CrmService" xmlns:tns="http://enterprise.netbeans.org/bpel/CrmServiceWrapper" partnerLinkType="tns:CrmProviderLinkType" partnerRole="CrmProviderRole"/>
+        <partnerLink name="RewardService" xmlns:tns="http://enterprise.netbeans.org/bpel/RewardServiceWrapper" partnerLinkType="tns:RewardProviderLinkType" partnerRole="RewardProviderRole"/>
+        <partnerLink name="DeliveryService" xmlns:tns="http://enterprise.netbeans.org/bpel/DeliveryServiceWrapper" partnerLinkType="tns:DeliveryProviderLinkType" partnerRole="DeliveryProviderRole"/>
+        <partnerLink name="Client" xmlns:tns="http://j2ee.netbeans.org/wsdl/BpelModule02/src/ClientService" partnerLinkType="tns:ClientService" myRole="ClientServicePortTypeRole"/>
+        <partnerLink name="NoticeStarted" xmlns:tns="http://j2ee.netbeans.org/wsdl/BpelModule02/src/NoticeShipmentStarted" partnerLinkType="tns:NoticeShipmentStarted" myRole="NoticeShipmentStartedPortTypeRole"/>
+        <partnerLink name="NoticeFinish" xmlns:tns="http://j2ee.netbeans.org/wsdl/BpelModule02/src/NoticeShipmentFinish" partnerLinkType="tns:NoticeShipmentFinish" myRole="NoticeShipmentFinishPortTypeRole"/>
+    </partnerLinks>
+    <variables>
+        <variable name="TotalRewards" type="xs:long"/>
+        <variable name="ChangeStatusOut1" messageType="ns1:changeStatusResponse"/>
+        <variable name="ChangeStatusIn1" messageType="ns1:changeStatus"/>
+        <variable name="ChangeStatusOut" messageType="ns1:changeStatusResponse"/>
+        <variable name="ChangeStatusIn" messageType="ns1:changeStatus"/>
+        <variable name="GetMembershipRewardOut" messageType="ns2:getMembershipRewardResponse"/>
+        <variable name="GetMembershipRewardIn" messageType="ns2:getMembershipReward"/>
+        <variable name="ClientServiceOperationOut3" xmlns:tns="http://j2ee.netbeans.org/wsdl/BpelModule02/src/ClientService" messageType="tns:ClientServiceOperationResponse"/>
+        <variable name="FindShipmentOut" messageType="ns1:findShipmentResponse"/>
+        <variable name="FindShipmentIn" messageType="ns1:findShipment"/>
+        <variable name="NoticeShipmentFinishOperationIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/BpelModule02/src/NoticeShipmentFinish" messageType="tns:NoticeShipmentFinishOperationRequest"/>
+        <variable name="NoticeShipmentStartedOperationIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/BpelModule02/src/NoticeShipmentStarted" messageType="tns:NoticeShipmentStartedOperationRequest"/>
+        <variable name="ClientServiceOperationOut2" xmlns:tns="http://j2ee.netbeans.org/wsdl/BpelModule02/src/ClientService" messageType="tns:ClientServiceOperationResponse"/>
+        <variable name="ClientServiceOperationOut1" xmlns:tns="http://j2ee.netbeans.org/wsdl/BpelModule02/src/ClientService" messageType="tns:ClientServiceOperationResponse"/>
+        <variable name="CreateShipmentOut" messageType="ns1:createShipmentResponse"/>
+        <variable name="CreateShipmentIn" messageType="ns1:createShipment"/>
+        <variable name="IsRewardMembershipOut" messageType="ns2:isRewardMembershipResponse"/>
+        <variable name="IsRewardMembershipIn" messageType="ns2:isRewardMembership"/>
+        <variable name="ClientServiceOperationOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/BpelModule02/src/ClientService" messageType="tns:ClientServiceOperationResponse"/>
+        <variable name="Fault1FaultVar" xmlns:tns="http://j2ee.netbeans.org/wsdl/BpelModule02/src/ClientService" messageType="tns:ClientServiceOperationFault"/>
+        <variable name="ClientServiceOperationIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/BpelModule02/src/ClientService" messageType="tns:ClientServiceOperationRequest"/>
+        <variable name="contador" type="xs:int"/>
+        <variable name="GetOrderOut" messageType="ns0:getOrderResponse">
+            <sxed:editor>
+                <sxed:predicate path="$GetOrderOut.parameters/return/orderLines[$ForEach1Counter]" source="from"/>
+            </sxed:editor>
+        </variable>
+        <variable name="GetOrderIn" messageType="ns0:getOrder"/>
+    </variables>
+    <correlationSets>
+        <correlationSet name="wzrd_set_createShipment_ReceiveStarted" properties="ns3:wzrd_prop_shipmentId_long"/>
+        <correlationSet name="wzrd_set_createShipment_ReceiveFinish" properties="ns3:wzrd_prop_shipmentId_long"/>
+    </correlationSets>
+    <sequence>
+        <receive name="Recibir_IDs" createInstance="yes" partnerLink="Client" operation="ClientServiceOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/BpelModule02/src/ClientService" portType="tns:ClientServicePortType" variable="ClientServiceOperationIn"/>
+        <assign name="Assign4">
+            <copy>
+                <from>1</from>
+                <to variable="contador"/>
+            </copy>
+            <copy>
+                <from variable="ClientServiceOperationIn" part="idPedido"/>
+                <to>$GetOrderIn.parameters/orderId</to>
+            </copy>
+        </assign>
+        <invoke name="Invoke_GetOrder" partnerLink="CrmService" operation="getOrder" portType="ns0:CrmProvider" inputVariable="GetOrderIn" outputVariable="GetOrderOut"/>
+        <if name="IF-Comprobacion_Cliente">
+            <condition>$ClientServiceOperationIn.idCliente != $GetOrderOut.parameters/return/customerId</condition>
+            <sequence name="Sequence3">
+                <assign name="Assign5">
+                    <copy>
+                        <from>'El envío solicitado no está asociado al cliente'</from>
+                        <to variable="Fault1FaultVar" part="part1"/>
+                    </copy>
+                </assign>
+                <reply name="Reply2" partnerLink="Client" operation="ClientServiceOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/BpelModule02/src/ClientService" portType="tns:ClientServicePortType" faultName="tns:fault1" variable="Fault1FaultVar"/>
+                <exit name="Exit1"/>
+            </sequence>
+        </if>
+        <assign name="Assign6">
+            <copy>
+                <from variable="ClientServiceOperationIn" part="idCliente"/>
+                <to>$IsRewardMembershipIn.parameters/customerId</to>
+            </copy>
+            <copy>
+                <from>0</from>
+                <to variable="TotalRewards"/>
+            </copy>
+        </assign>
+        <invoke name="isRewardMembership" partnerLink="RewardService" operation="isRewardMembership" portType="ns2:RewardProvider" inputVariable="IsRewardMembershipIn" outputVariable="IsRewardMembershipOut"/>
+        <if name="If1">
+            <condition>$IsRewardMembershipOut.parameters/return = true()</condition>
+            <sequence name="Sequence6">
+                <forEach name="ForEach1" parallel="no" counterName="ForEach1Counter">
+                    <startCounterValue>1</startCounterValue>
+                        <finalCounterValue>count($GetOrderOut.parameters/return/orderLines)</finalCounterValue>
+                        <completionCondition>
+                            <branches>count($GetOrderOut.parameters/return/orderLines)</branches>
+                        </completionCondition>
+                        <scope name="Scope1">
+                            <variables>
+                                    <variable name="AddMembershipRewardOut" messageType="ns2:addMembershipRewardResponse"/>
+                                        <variable name="AddMembershipRewardIn" messageType="ns2:addMembershipReward"/>
+                                        <variable name="GetProductRewardOut" messageType="ns2:getProductRewardResponse"/>
+                                        <variable name="GetProductRewardIn" messageType="ns2:getProductReward"/>
+                                </variables>
+                                <faultHandlers>
+                                    <catch faultName="ns2:RewardException">
+                                            <assign name="NoPoints">
+                                                    <copy>
+                                                            <from>0</from>
+                                                                <to>$GetProductRewardOut.parameters/return</to>
+                                                        </copy>
+                                                </assign>
+                                        </catch>
+                                </faultHandlers>
+                                <sequence name="Sequence4">
+                                    <assign name="Assign7">
+                                            <copy>
+                                                    <from>$GetOrderOut.parameters/return/orderLines[$ForEach1Counter]/productId
+                                    <sxed:editor>
+                                                                    <sxed:predicate path="$GetOrderOut.parameters/return/orderLines[$ForEach1Counter]" source="from"/>
+                                                                </sxed:editor>
+                                                        </from>
+                                                        <to>$GetProductRewardIn.parameters/productId</to>
+                                                </copy>
+                                        </assign>
+                                        <invoke name="getProductReward" partnerLink="RewardService" operation="getProductReward" portType="ns2:RewardProvider" inputVariable="GetProductRewardIn" outputVariable="GetProductRewardOut"></invoke>
+                                        <if name="If2">
+                                            <condition>0 != $GetProductRewardOut.parameters/return</condition>
+                                                <sequence name="Sequence5">
+                                                    <assign name="Assign8">
+                                                            <copy>
+                                                                    <from>$GetOrderOut.parameters/return/orderLines[$ForEach1Counter]/amount * $GetProductRewardOut.parameters/return
+                                            <sxed:editor>
+                                                                                    <sxed:predicate path="$GetOrderOut.parameters/return/orderLines[$ForEach1Counter]" source="from"/>
+                                                                                </sxed:editor>
+                                                                        </from>
+                                                                        <to>$AddMembershipRewardIn.parameters/rewardPoints</to>
+                                                                </copy>
+                                                                <copy>
+                                                                    <from>$GetOrderOut.parameters/return/customerId</from>
+                                                                        <to>$AddMembershipRewardIn.parameters/customerId</to>
+                                                                </copy>
+                                                        </assign>
+                                                        <invoke name="addMembershipReward" partnerLink="RewardService" operation="addMembershipReward" portType="ns2:RewardProvider" inputVariable="AddMembershipRewardIn" outputVariable="AddMembershipRewardOut"/>
+                                                    <assign name="TotalRewards">
+                                                        <copy>
+                                                            <from>$TotalRewards + $AddMembershipRewardIn.parameters/rewardPoints</from>
+                                                            <to variable="TotalRewards"/>
+                                                        </copy>
+                                                    </assign>
+                                                </sequence>
+                                        </if>
+                                </sequence>
+                        </scope>
+                </forEach>
+            </sequence>
+        </if>
+        <assign name="Assign10">
+            <copy>
+                <from variable="ClientServiceOperationIn" part="idCliente"/>
+                <to>$CreateShipmentIn.parameters/customerId</to>
+            </copy>
+            <copy>
+                <from variable="ClientServiceOperationIn" part="idPedido"/>
+                <to>$CreateShipmentIn.parameters/shipmentRef</to>
+            </copy>
+            <copy>
+                <from>$GetOrderOut.parameters/return/address</from>
+                <to>$CreateShipmentIn.parameters/address</to>
+            </copy>
+            <copy>
+                <from>1</from>
+                <to variable="ClientServiceOperationOut2" part="idShipment"/>
+            </copy>
+            <copy>
+                <from>1</from>
+                <to variable="ClientServiceOperationOut2" part="RewardPoints"/>
+            </copy>
+            <copy>
+                <from>true()</from>
+                <to variable="ClientServiceOperationOut2" part="Shipped"/>
+            </copy>
+            <copy>
+                <from>true()</from>
+                <to variable="ClientServiceOperationOut2" part="Retardo"/>
+            </copy>
+        </assign>
+        <invoke name="createShipment" partnerLink="DeliveryService" operation="createShipment" portType="ns1:DeliveryProvider" inputVariable="CreateShipmentIn" outputVariable="CreateShipmentOut">
+            <correlations>
+                <correlation set="wzrd_set_createShipment_ReceiveStarted" initiate="yes" pattern="response"/>
+                <correlation set="wzrd_set_createShipment_ReceiveFinish" initiate="yes" pattern="response"/>
+            </correlations>
+        </invoke>
+        <receive name="ReceiveStarted" partnerLink="NoticeStarted" operation="NoticeShipmentStartedOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/BpelModule02/src/NoticeShipmentStarted" portType="tns:NoticeShipmentStartedPortType" createInstance="no" variable="NoticeShipmentStartedOperationIn">
+            <correlations>
+                <correlation set="wzrd_set_createShipment_ReceiveStarted" initiate="no"/>
+            </correlations>
+        </receive>
+        <receive name="ReceiveFinish" partnerLink="NoticeFinish" operation="NoticeShipmentFinishOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/BpelModule02/src/NoticeShipmentFinish" portType="tns:NoticeShipmentFinishPortType" createInstance="no" variable="NoticeShipmentFinishOperationIn">
+            <correlations>
+                <correlation set="wzrd_set_createShipment_ReceiveFinish" initiate="no"/>
+            </correlations>
+        </receive>
+        <assign name="Assign11">
+            <copy>
+                <from variable="NoticeShipmentFinishOperationIn" part="idShipment"/>
+                <to>$FindShipmentIn.parameters/shipmentId</to>
+            </copy>
+        </assign>
+        <invoke name="findShipment" partnerLink="DeliveryService" operation="findShipment" portType="ns1:DeliveryProvider" inputVariable="FindShipmentIn" outputVariable="FindShipmentOut"/>
+        <if name="If3">
+            <condition>$FindShipmentOut.parameters/return/shipmentStatus = 'DELIVERED'</condition>
+            <assign name="ShippedTrue">
+                <copy>
+                    <from>true()</from>
+                    <to variable="ClientServiceOperationOut" part="Shipped"/>
+                </copy>
+            </assign>
+            <else>
+                <assign name="ShippedFalse">
+                    <copy>
+                        <from>false()</from>
+                        <to variable="ClientServiceOperationOut" part="Shipped"/>
+                    </copy>
+                </assign>
+            </else>
+        </if>
+        <if name="If4">
+            <condition>$NoticeShipmentFinishOperationIn.hoursShipment &gt; $NoticeShipmentStartedOperationIn.estimatedDeliveryTimes</condition>
+            <assign name="DelayTrue">
+                <copy>
+                    <from>true()</from>
+                    <to variable="ClientServiceOperationOut" part="Retardo"/>
+                </copy>
+            </assign>
+            <else>
+                <assign name="DelayFalse">
+                    <copy>
+                        <from>false()</from>
+                        <to variable="ClientServiceOperationOut" part="Retardo"/>
+                    </copy>
+                </assign>
+            </else>
+        </if>
+        <assign name="Assign15">
+            <copy>
+                <from variable="TotalRewards"/>
+                <to variable="ClientServiceOperationOut" part="RewardPoints"/>
+            </copy>
+            <copy>
+                <from variable="NoticeShipmentFinishOperationIn" part="idShipment"/>
+                <to variable="ClientServiceOperationOut" part="idShipment"/>
+            </copy>
+        </assign>
+        <reply name="Reply3" partnerLink="Client" operation="ClientServiceOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/BpelModule02/src/ClientService" portType="tns:ClientServicePortType" variable="ClientServiceOperationOut"/>
+    </sequence>
+</process>

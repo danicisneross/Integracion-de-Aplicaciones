@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="dcd7b72b-c8dd-4e09-ad83-e0569280751a" activeEnvironment="Default" name="NoticeShipment" soapui-version="5.7.2" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="59763781-0c30-4da4-9ad5-787db82d81e1" wsaVersion="NONE" name="casaBinding2" type="wsdl" bindingName="{CA02REST}casaBinding2" soapVersion="1_1" anonymous="optional" definition="http://localhost:5050/CA02RESTService1/casaPort1?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://OMINT:5050/CA02RESTService2/casaPort1</con:endpoint></con:endpoints><con:operation id="47d4a8a5-4f19-479e-81bf-21bd09f74a1f" isOneWay="false" action="" name="NoticeShipmentFinishOperation" bindingOperationName="NoticeShipmentFinishOperation" type="One-Way" inputName="input1" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="1a1eb1ae-7473-4e6b-9974-3c9f4de98fc7" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://OMINT:5050/CA02RESTService2/casaPort1</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ca0="CA02REST">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ca0:NoticeShipmentFinishOperation>
+         <hoursShipment>1</hoursShipment>
+         <idShipment>3</idShipment>
+      </ca0:NoticeShipmentFinishOperation>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="CA02REST/NoticeShipmentFinishPortType/input1"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" id="b48ffab5-2871-4430-92fb-04dc870a4020" wsaVersion="NONE" name="casaBinding1" type="wsdl" bindingName="{CA02REST}casaBinding1" soapVersion="1_1" anonymous="optional" definition="http://localhost:5050/CA02RESTService1/casaPort1?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:5050/CA02RESTService1/casaPort1?wsdl"><con:part><con:url>http://localhost:5050/CA02RESTService1/casaPort1?wsdl</con:url><con:content><![CDATA[<definitions targetNamespace="CA02REST" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns="http://j2ee.netbeans.org/wsdl/BpelModule02/src/NoticeShipmentStarted" xmlns:tns="CA02REST" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://j2ee.netbeans.org/wsdl/BpelModule02/src/NoticeShipmentFinish" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <import namespace="http://j2ee.netbeans.org/wsdl/BpelModule02/src/NoticeShipmentFinish" location="http://OMINT:5050/CA02REST-sun-http-binding/BpelModule02/NoticeShipmentFinish.wsdl"></import>
+  <import namespace="http://j2ee.netbeans.org/wsdl/BpelModule02/src/NoticeShipmentStarted" location="http://OMINT:5050/CA02REST-sun-http-binding/BpelModule02/NoticeShipmentStarted.wsdl"></import>
+  <portType name="dummyCasaPortType"></portType>
+  <binding name="casaBinding2" type="ns1:NoticeShipmentFinishPortType">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="NoticeShipmentFinishOperation">
+      <soap:operation/>
+      <input name="input1">
+        <soap:body use="literal" namespace="CA02REST"/>
+      </input>
+    </operation>
+  </binding>
+  <binding name="casaBinding1" type="ns:NoticeShipmentStartedPortType">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="NoticeShipmentStartedOperation">
+      <soap:operation/>
+      <input name="input1">
+        <soap:body use="literal" namespace="CA02REST"/>
+      </input>
+    </operation>
+  </binding>
+  <service name="CA02RESTService2">
+    <port name="NoticeShipmentFinishPort" binding="tns:casaBinding2">
+      <soap:address location="http://OMINT:5050/CA02RESTService2/casaPort1"/>
+    </port>
+  </service>
+  <service name="CA02RESTService1">
+    <port name="NoticeShipmentStartedPort" binding="tns:casaBinding1">
+      <soap:address location="http://OMINT:5050/CA02RESTService1/casaPort1"/>
+    </port>
+  </service>
+</definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://OMINT:5050/CA02REST-sun-http-binding/BpelModule02/NoticeShipmentFinish.wsdl</con:url><con:content><![CDATA[<definitions name="NoticeShipmentFinish" targetNamespace="http://j2ee.netbeans.org/wsdl/BpelModule02/src/NoticeShipmentFinish" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://j2ee.netbeans.org/wsdl/BpelModule02/src/NoticeShipmentFinish" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:ns0="http://rs.udc.es/delivery">
+  <types>
+    <xsd:schema targetNamespace="http://j2ee.netbeans.org/wsdl/BpelModule02/src/NoticeShipmentFinish">
+      <xsd:import namespace="http://ws.udc.es/ia02/xml" schemaLocation="DeliveryService.xsd"/>
+    </xsd:schema>
+  </types>
+  <message name="NoticeShipmentFinishOperationRequest">
+    <part name="hoursShipment" type="xsd:int"/>
+    <part name="idShipment" type="xsd:long"/>
+  </message>
+  <portType name="NoticeShipmentFinishPortType">
+    <operation name="NoticeShipmentFinishOperation">
+      <input name="input1" message="tns:NoticeShipmentFinishOperationRequest"/>
+    </operation>
+  </portType>
+  <plnk:partnerLinkType name="NoticeShipmentFinish">
+    <!--A partner link type is automatically generated when a new port type is added. Partner link types are used by BPEL processes. 
+In a BPEL process, a partner link represents the interaction between the BPEL process and a partner service. Each partner link is associated with a partner link type.
+A partner link type characterizes the conversational relationship between two services. The partner link type can have one or two roles.-->
+    <plnk:role name="NoticeShipmentFinishPortTypeRole" portType="tns:NoticeShipmentFinishPortType"/>
+  </plnk:partnerLinkType>
+</definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://OMINT:5050/CA02REST-sun-http-binding/BpelModule02/DeliveryService.xsd</con:url><con:content><![CDATA[<xs:schema elementFormDefault="qualified" version="1.0" targetNamespace="http://ws.udc.es/ia02/xml" xmlns:tns="http://ws.udc.es/ia02/xml" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://www.w3.org/2005/Atom">
+  <xs:import namespace="http://www.w3.org/2005/Atom" schemaLocation="AtomLink.xsd"/>
+  <xs:element name="customer" type="tns:customerInfo"/>
+  <xs:element name="error" type="tns:errorType"/>
+  <xs:element name="inputValidationException" type="tns:inputValidationExceptionType"/>
+  <xs:element name="instanceNotFoundException" type="tns:instanceNotFoundExceptionType"/>
+  <xs:element name="shipment" type="tns:shipmentInfo"/>
+  <xs:element name="shipmentNotPending" type="tns:shipmentNotPending"/>
+  <xs:element name="shipments" type="tns:shipmentListType"/>
+  <xs:complexType name="customerInfo">
+    <xs:sequence>
+      <xs:element name="name" type="xs:string"/>
+      <xs:element name="Cif" type="xs:string"/>
+      <xs:element name="address" type="xs:string"/>
+      <xs:element ref="ns1:link" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="customerId" type="xs:long" use="required"/>
+  </xs:complexType>
+  <xs:complexType name="errorType">
+    <xs:sequence>
+      <xs:element name="param" type="tns:errorParamType" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="errorType" type="xs:string" use="required"/>
+  </xs:complexType>
+  <xs:complexType name="errorParamType">
+    <xs:sequence/>
+    <xs:attribute name="key" type="xs:string" use="required"/>
+    <xs:attribute name="value" type="xs:string" use="required"/>
+  </xs:complexType>
+  <xs:complexType name="inputValidationExceptionType">
+    <xs:sequence>
+      <xs:element name="message" type="xs:string"/>
+    </xs:sequence>
+    <xs:attribute name="errorType" type="xs:string" use="required"/>
+  </xs:complexType>
+  <xs:complexType name="instanceNotFoundExceptionType">
+    <xs:sequence>
+      <xs:element name="instanceId" type="xs:string"/>
+      <xs:element name="instanceType" type="xs:string"/>
+    </xs:sequence>
+    <xs:attribute name="errorType" type="xs:string" use="required"/>
+  </xs:complexType>
+  <xs:complexType name="shipmentInfo">
+    <xs:sequence>
+      <xs:element name="customerId" type="xs:long"/>
+      <xs:element name="packageReference" type="xs:long"/>
+      <xs:element name="address" type="xs:string"/>
+      <xs:element name="status" type="xs:string" minOccurs="0"/>
+      <xs:element name="hoursLeft" type="xs:long"/>
+      <xs:element name="deliveryDate" type="xs:dateTime" minOccurs="0"/>
+      <xs:element ref="ns1:link" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="shipmentId" type="xs:long" use="required"/>
+  </xs:complexType>
+  <xs:complexType name="shipmentListType">
+    <xs:sequence>
+      <xs:element ref="tns:shipment" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="shipmentNotPending">
+    <xs:sequence>
+      <xs:element name="shipmentId" type="xs:long"/>
+    </xs:sequence>
+    <xs:attribute name="errorType" type="xs:string" use="required"/>
+  </xs:complexType>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://OMINT:5050/CA02REST-sun-http-binding/BpelModule02/AtomLink.xsd</con:url><con:content><![CDATA[<xs:schema version="1.0" targetNamespace="http://www.w3.org/2005/Atom" xmlns:tns="http://www.w3.org/2005/Atom" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="link" type="tns:atomLinkType"/>
+  <xs:complexType name="atomLinkType">
+    <xs:sequence/>
+    <xs:attribute name="href" type="xs:string" use="required"/>
+    <xs:attribute name="rel" type="xs:string" use="required"/>
+    <xs:attribute name="type" type="xs:string" use="required"/>
+    <xs:attribute name="title" type="xs:string" use="required"/>
+  </xs:complexType>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://OMINT:5050/CA02REST-sun-http-binding/BpelModule02/NoticeShipmentStarted.wsdl</con:url><con:content><![CDATA[<definitions name="NoticeShipmentStarted" targetNamespace="http://j2ee.netbeans.org/wsdl/BpelModule02/src/NoticeShipmentStarted" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://j2ee.netbeans.org/wsdl/BpelModule02/src/NoticeShipmentStarted" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:ns0="http://rs.udc.es/delivery">
+  <types>
+    <xsd:schema targetNamespace="http://j2ee.netbeans.org/wsdl/BpelModule02/src/NoticeShipmentStarted">
+      <xsd:import namespace="http://ws.udc.es/ia02/xml" schemaLocation="DeliveryService.xsd"/>
+    </xsd:schema>
+  </types>
+  <message name="NoticeShipmentStartedOperationRequest">
+    <part name="estimatedDeliveryTimes" type="xsd:int"/>
+    <part name="idShipment" type="xsd:long"/>
+  </message>
+  <portType name="NoticeShipmentStartedPortType">
+    <operation name="NoticeShipmentStartedOperation">
+      <input name="input1" message="tns:NoticeShipmentStartedOperationRequest"/>
+    </operation>
+  </portType>
+  <plnk:partnerLinkType name="NoticeShipmentStarted">
+    <!--A partner link type is automatically generated when a new port type is added. Partner link types are used by BPEL processes. 
+In a BPEL process, a partner link represents the interaction between the BPEL process and a partner service. Each partner link is associated with a partner link type.
+A partner link type characterizes the conversational relationship between two services. The partner link type can have one or two roles.-->
+    <plnk:role name="NoticeShipmentStartedPortTypeRole" portType="tns:NoticeShipmentStartedPortType"/>
+  </plnk:partnerLinkType>
+</definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://OMINT:5050/CA02RESTService1/casaPort1</con:endpoint></con:endpoints><con:operation id="3bac6598-bc46-4e50-a3c0-ce60331e06c5" isOneWay="false" action="" name="NoticeShipmentStartedOperation" bindingOperationName="NoticeShipmentStartedOperation" type="One-Way" inputName="input1" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="e0e0656b-9dac-472b-b4ab-64b5b60776d3" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://OMINT:5050/CA02RESTService1/casaPort1</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ca0="CA02REST">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ca0:NoticeShipmentStartedOperation>
+         <estimatedDeliveryTimes>2</estimatedDeliveryTimes>
+         <idShipment>3</idShipment>
+      </ca0:NoticeShipmentStartedOperation>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="CA02REST/NoticeShipmentStartedPortType/input1"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>

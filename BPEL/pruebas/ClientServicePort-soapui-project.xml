@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="27b6ff08-1a39-457b-bf35-fe1e1b6443e1" activeEnvironment="Default" name="ClientServicePort" soapui-version="5.7.2" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="85e367cd-57ea-465b-995c-23cbbdccb7a7" wsaVersion="NONE" name="ClientServiceBinding" type="wsdl" bindingName="{http://j2ee.netbeans.org/wsdl/BpelModule02/src/ClientService}ClientServiceBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:5050/ClientServiceService/ClientServicePort?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:5050/ClientServiceService/ClientServicePort?wsdl"><con:part><con:url>http://localhost:5050/ClientServiceService/ClientServicePort?wsdl</con:url><con:content><![CDATA[<definitions name="ClientService" targetNamespace="http://j2ee.netbeans.org/wsdl/BpelModule02/src/ClientService" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://j2ee.netbeans.org/wsdl/BpelModule02/src/ClientService" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <types></types>
+  <message name="ClientServiceOperationResponse">
+    <part name="idShipment" type="xsd:long"></part>
+    <part name="RewardPoints" type="xsd:int"></part>
+    <part name="Shipped" type="xsd:boolean"></part>
+    <part name="Retardo" type="xsd:boolean"></part>
+  </message>
+  <message name="ClientServiceOperationFault">
+    <part name="fault_message" type="xsd:string"></part>
+  </message>
+  <message name="ClientServiceOperationRequest">
+    <part name="idCliente" type="xsd:long"></part>
+    <part name="idPedido" type="xsd:long"></part>
+  </message>
+  <portType name="ClientServicePortType">
+    <operation name="ClientServiceOperation">
+      <input name="input1" message="tns:ClientServiceOperationRequest"></input>
+      <output name="output1" message="tns:ClientServiceOperationResponse"></output>
+      <fault name="fault1" message="tns:ClientServiceOperationFault"></fault>
+    </operation>
+  </portType>
+  <binding name="ClientServiceBinding" type="tns:ClientServicePortType">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="ClientServiceOperation">
+      <soap:operation/>
+      <input name="input1">
+        <soap:body use="literal" namespace="http://j2ee.netbeans.org/wsdl/BpelModule02/src/ClientService"/>
+      </input>
+      <output name="output1">
+        <soap:body use="literal" namespace="http://j2ee.netbeans.org/wsdl/BpelModule02/src/ClientService"/>
+      </output>
+      <fault name="fault1">
+        <soap:fault name="fault1" use="literal" namespace="http://j2ee.netbeans.org/wsdl/BpelModule02/src/ClientService"/>
+      </fault>
+    </operation>
+  </binding>
+  <service name="ClientServiceService">
+    <port name="ClientServicePort" binding="tns:ClientServiceBinding">
+      <soap:address location="http://OMINT:5050/ClientServiceService/ClientServicePort"/>
+    </port>
+  </service>
+  <plnk:partnerLinkType name="ClientService">
+    <!--A partner link type is automatically generated when a new port type is added. Partner link types are used by BPEL processes. 
+In a BPEL process, a partner link represents the interaction between the BPEL process and a partner service. Each partner link is associated with a partner link type.
+A partner link type characterizes the conversational relationship between two services. The partner link type can have one or two roles.-->
+    <plnk:role name="ClientServicePortTypeRole" portType="tns:ClientServicePortType"/>
+  </plnk:partnerLinkType>
+</definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://OMINT:5050/ClientServiceService/ClientServicePort</con:endpoint></con:endpoints><con:operation id="4c1764f1-5354-44e8-b887-29c96a86540f" isOneWay="false" action="" name="ClientServiceOperation" bindingOperationName="ClientServiceOperation" type="Request-Response" outputName="output1" inputName="input1" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="451721db-ae8a-442b-a1a1-a2a54d78732b" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://OMINT:5050/ClientServiceService/ClientServicePort</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cli="http://j2ee.netbeans.org/wsdl/BpelModule02/src/ClientService">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cli:ClientServiceOperation>
+         <idCliente>81191750W</idCliente>
+         <idPedido>5</idPedido>
+      </cli:ClientServiceOperation>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://j2ee.netbeans.org/wsdl/BpelModule02/src/ClientService/ClientServicePortType/input1"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>

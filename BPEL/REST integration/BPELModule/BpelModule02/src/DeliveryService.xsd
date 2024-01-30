@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema elementFormDefault="qualified" version="1.0" targetNamespace="http://ws.udc.es/ia02/xml" xmlns:tns="http://ws.udc.es/ia02/xml" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://www.w3.org/2005/Atom">
+
+  <xs:import namespace="http://www.w3.org/2005/Atom" schemaLocation="AtomLink.xsd"/>
+
+  <xs:element name="customer" type="tns:customerInfo"/>
+
+  <xs:element name="error" type="tns:errorType"/>
+
+  <xs:element name="inputValidationException" type="tns:inputValidationExceptionType"/>
+
+  <xs:element name="instanceNotFoundException" type="tns:instanceNotFoundExceptionType"/>
+
+  <xs:element name="shipment" type="tns:shipmentInfo"/>
+
+  <xs:element name="shipmentNotPending" type="tns:shipmentNotPending"/>
+
+  <xs:element name="shipments" type="tns:shipmentListType"/>
+
+  <xs:complexType name="customerInfo">
+    <xs:sequence>
+      <xs:element name="name" type="xs:string"/>
+      <xs:element name="Cif" type="xs:string"/>
+      <xs:element name="address" type="xs:string"/>
+      <xs:element ref="ns1:link" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="customerId" type="xs:long" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="errorType">
+    <xs:sequence>
+      <xs:element name="param" type="tns:errorParamType" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="errorType" type="xs:string" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="errorParamType">
+    <xs:sequence/>
+    <xs:attribute name="key" type="xs:string" use="required"/>
+    <xs:attribute name="value" type="xs:string" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="inputValidationExceptionType">
+    <xs:sequence>
+      <xs:element name="message" type="xs:string"/>
+    </xs:sequence>
+    <xs:attribute name="errorType" type="xs:string" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="instanceNotFoundExceptionType">
+    <xs:sequence>
+      <xs:element name="instanceId" type="xs:string"/>
+      <xs:element name="instanceType" type="xs:string"/>
+    </xs:sequence>
+    <xs:attribute name="errorType" type="xs:string" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="shipmentInfo">
+    <xs:sequence>
+      <xs:element name="customerId" type="xs:long"/>
+      <xs:element name="packageReference" type="xs:long"/>
+      <xs:element name="address" type="xs:string"/>
+      <xs:element name="status" type="xs:string" minOccurs="0"/>
+      <xs:element name="hoursLeft" type="xs:long"/>
+      <xs:element name="deliveryDate" type="xs:dateTime" minOccurs="0"/>
+      <xs:element ref="ns1:link" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="shipmentId" type="xs:long" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="shipmentListType">
+    <xs:sequence>
+      <xs:element ref="tns:shipment" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="shipmentNotPending">
+    <xs:sequence>
+      <xs:element name="shipmentId" type="xs:long"/>
+    </xs:sequence>
+    <xs:attribute name="errorType" type="xs:string" use="required"/>
+  </xs:complexType>
+</xs:schema>
+

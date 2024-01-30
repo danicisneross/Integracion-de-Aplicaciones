@@ -1,0 +1,9 @@
+/home/dani/Escritorio/IA/ia-02/rs-deliveries-model/src/main/java/es/udc/rs/deliveries/model/deliveryservice/MockDeliveryService.java
+/home/dani/Escritorio/IA/ia-02/rs-deliveries-model/src/main/java/es/udc/rs/deliveries/model/shipment/Shipment.java
+/home/dani/Escritorio/IA/ia-02/rs-deliveries-model/src/main/java/es/udc/rs/deliveries/model/shipment/ShipmentStatus.java
+/home/dani/Escritorio/IA/ia-02/rs-deliveries-model/src/main/java/es/udc/rs/deliveries/model/exceptions/ShipmentStatusException.java
+/home/dani/Escritorio/IA/ia-02/rs-deliveries-model/src/main/java/es/udc/rs/deliveries/model/deliveryservice/DeliveryService.java
+/home/dani/Escritorio/IA/ia-02/rs-deliveries-model/src/main/java/es/udc/rs/deliveries/model/customer/Customer.java
+/home/dani/Escritorio/IA/ia-02/rs-deliveries-model/src/main/java/es/udc/rs/deliveries/model/exceptions/CustomerNoEmpty.java
+/home/dani/Escritorio/IA/ia-02/rs-deliveries-model/src/main/java/es/udc/rs/deliveries/model/deliveryservice/DeliveryServiceFactory.java
+/home/dani/Escritorio/IA/ia-02/rs-deliveries-model/src/main/java/es/udc/rs/deliveries/model/exceptions/ShipmentNotPending.java

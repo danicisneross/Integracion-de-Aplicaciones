@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bindings version="3.0" xmlns="https://jakarta.ee/xml/ns/jaxb">
+  <!--
+
+Este archivo ha sido generado por Eclipse Implementation of JAXB v4.0.3 
+Visite https://eclipse-ee4j.github.io/jaxb-ri 
+Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
+Generado el: 2023.12.10 a las 10:48:46 AM CET
+  -->
+  <bindings scd="x-schema::tns" xmlns:tns="http://www.w3.org/2005/Atom">
+    <schemaBindings map="false">
+      <package name="es.udc.rs.deliveries.client.service.rest.dto"/>
+    </schemaBindings>
+    <bindings scd="~tns:atomLinkType">
+      <class ref="es.udc.rs.deliveries.client.service.rest.dto.AtomLinkDtoJaxb"/>
+    </bindings>
+  </bindings>
+  <bindings scd="x-schema::tns" xmlns:tns="http://ws.udc.es/ia02/xml">
+    <schemaBindings map="false">
+      <package name="es.udc.rs.deliveries.client.service.rest.dto"/>
+    </schemaBindings>
+    <bindings scd="~tns:customerInfo">
+      <class ref="es.udc.rs.deliveries.client.service.rest.dto.ClientCustomerDtoJaxb"/>
+    </bindings>
+    <bindings scd="~tns:errorType">
+      <class ref="es.udc.rs.deliveries.client.service.rest.dto.ExceptionDtoJaxb"/>
+    </bindings>
+    <bindings scd="~tns:inputValidationExceptionType">
+      <class ref="es.udc.rs.deliveries.client.service.rest.dto.ClientInputValidationExceptionDtoJaxb"/>
+    </bindings>
+    <bindings scd="~tns:instanceNotFoundExceptionType">
+      <class ref="es.udc.rs.deliveries.client.service.rest.dto.ClientInstanceNotFoundExceptionDtoJaxb"/>
+    </bindings>
+    <bindings scd="~tns:shipmentInfo">
+      <class ref="es.udc.rs.deliveries.client.service.rest.dto.ClientShipmentDtoJaxb"/>
+    </bindings>
+    <bindings scd="~tns:shipmentNotPending">
+      <class ref="es.udc.rs.deliveries.client.service.rest.dto.ClientShipmentNotPendingExceptionDtoJaxb"/>
+    </bindings>
+    <bindings scd="~tns:shipmentListType">
+      <class ref="es.udc.rs.deliveries.client.service.rest.dto.ClientShipmentDtoJaxbList"/>
+    </bindings>
+    <bindings scd="~tns:errorParamType">
+      <class ref="es.udc.rs.deliveries.client.service.rest.dto.ExceptionParamDtoJaxb"/>
+    </bindings>
+  </bindings>
+</bindings>
+

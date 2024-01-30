@@ -1,0 +1,54 @@
+<jxb:bindings version="3.0"
+    xmlns:jxb="https://jakarta.ee/xml/ns/jaxb"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+    xmlns:ns1="http://www.w3.org/2005/Atom">
+    <jxb:bindings schemaLocation="../../../../rs-deliveries-service/target/generated-resources/schemagen/schema2.xsd">
+        <jxb:globalBindings>
+            <xjc:javaType name="java.time.LocalDateTime" xmlType="xs:dateTime"
+               adapter=" es.udc.rs.deliveries.client.service.rest.jaxb.LocalDateTimeXmlAdapter" />
+        </jxb:globalBindings>
+        <jxb:bindings node="//xs:complexType[@name='customerInfo']">
+            <jxb:class name="ClientCustomerDtoJaxb"/>
+            <jxb:bindings node=".//xs:attribute[@name='customerId']">
+               <jxb:property name="id"/>
+            </jxb:bindings>
+            <jxb:bindings node=".//xs:element[@ref='ns1:link']">
+                <jxb:property name="links"/>
+            </jxb:bindings>
+        </jxb:bindings>
+        <jxb:bindings node="//xs:complexType[@name='inputValidationExceptionType']">    
+            <jxb:class name="ClientInputValidationExceptionDtoJaxb"/>
+        </jxb:bindings>
+        <jxb:bindings node="//xs:complexType[@name='instanceNotFoundExceptionType']">    
+            <jxb:class name="ClientInstanceNotFoundExceptionDtoJaxb"/>
+        </jxb:bindings>
+        <jxb:bindings node="//xs:complexType[@name='shipmentInfo']">
+            <jxb:class name="ClientShipmentDtoJaxb"/>
+            <jxb:bindings node=".//xs:attribute[@name='shipmentId']">
+                <jxb:property name="id"/>
+            </jxb:bindings>
+            <jxb:bindings node=".//xs:element[@ref='ns1:link']">
+                <jxb:property name="links"/>
+            </jxb:bindings>
+        </jxb:bindings>
+        <jxb:bindings node="//xs:complexType[@name='shipmentListType']">
+            <jxb:class name="ClientShipmentDtoJaxbList"/>
+            <jxb:bindings node=".//xs:element[@ref='tns:shipment']">
+                <jxb:property name="shipments"/>
+            </jxb:bindings>
+        </jxb:bindings>
+        <jxb:bindings node="//xs:complexType[@name='shipmentNotPending']">
+            <jxb:class name="ClientShipmentNotPendingExceptionDtoJaxb"/>
+        </jxb:bindings>
+        <jxb:bindings node="//xs:complexType[@name='errorParamType']">
+            <jxb:class name="ExceptionParamDtoJaxb"/>
+        </jxb:bindings>
+        <jxb:bindings node="//xs:complexType[@name='errorType']">
+            <jxb:class name="ExceptionDtoJaxb"/>
+        </jxb:bindings>
+        <jxb:bindings node=".//xs:element[@name='param']">
+            <jxb:property name="params"/>
+        </jxb:bindings>
+    </jxb:bindings>
+</jxb:bindings>    

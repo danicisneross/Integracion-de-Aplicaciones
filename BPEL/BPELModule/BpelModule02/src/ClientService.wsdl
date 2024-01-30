@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="ClientService" targetNamespace="http://j2ee.netbeans.org/wsdl/BpelModule02/src/ClientService"
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://j2ee.netbeans.org/wsdl/BpelModule02/src/ClientService" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype">
+    <types/>
+    <message name="ClientServiceOperationRequest">
+        <part name="idCliente" type="xsd:long"/>
+        <part name="idPedido" type="xsd:long"/>
+    </message>
+    <message name="ClientServiceOperationResponse">
+        <part name="idShipment" type="xsd:long"/>
+        <part name="RewardPoints" type="xsd:int"/>
+        <part name="Shipped" type="xsd:boolean"/>
+        <part name="Retardo" type="xsd:boolean"/>
+    </message>
+    <message name="ClientServiceOperationFault">
+        <part name="part1" type="xsd:string"/>
+    </message>
+    <portType name="ClientServicePortType">
+        <operation name="ClientServiceOperation">
+            <input name="input1" message="tns:ClientServiceOperationRequest"/>
+            <output name="output1" message="tns:ClientServiceOperationResponse"/>
+            <fault name="fault1" message="tns:ClientServiceOperationFault"/>
+        </operation>
+    </portType>
+    <plnk:partnerLinkType name="ClientService">
+        <!-- A partner link type is automatically generated when a new port type is added. Partner link types are used by BPEL processes. 
+In a BPEL process, a partner link represents the interaction between the BPEL process and a partner service. Each partner link is associated with a partner link type.
+A partner link type characterizes the conversational relationship between two services. The partner link type can have one or two roles.-->
+        <plnk:role name="ClientServicePortTypeRole" portType="tns:ClientServicePortType"/>
+    </plnk:partnerLinkType>
+</definitions>

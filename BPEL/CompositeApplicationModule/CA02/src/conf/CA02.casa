@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<casa xmlns="http://java.sun.com/xml/ns/casa" xmlns:ns1="http://rs.udc.es/crm" xmlns:ns2="CA02" xmlns:ns3="http://j2ee.netbeans.org/wsdl/BpelModule02/src/ClientService" xmlns:ns4="http://rs.udc.es/reward" xmlns:ns5="http://rs.udc.es/delivery" xmlns:ns6="http://j2ee.netbeans.org/wsdl/BpelModule02/src/NoticeShipmentStarted" xmlns:ns7="http://j2ee.netbeans.org/wsdl/BpelModule02/src/NoticeShipmentFinish" xmlns:ns8="http://enterprise.netbeans.org/bpel/BpelModule02/bpelModule02" xmlns:xlink="http://www.w3.org/2000/xlink">
+    <endpoints>
+        <endpoint endpoint-name="CrmProviderPort" interface-name="ns1:CrmProvider" name="endpoint1" service-name="ns1:CrmProviderService"/>
+        <endpoint endpoint-name="ClientService" interface-name="ns3:ClientServicePortType" name="endpoint2" service-name="ns2:CA02Service1"/>
+        <endpoint endpoint-name="RewardProviderPort" interface-name="ns4:RewardProvider" name="endpoint3" service-name="ns4:RewardProviderService"/>
+        <endpoint endpoint-name="DeliveryProviderPort" interface-name="ns5:DeliveryProvider" name="endpoint4" service-name="ns5:DeliveryProviderService"/>
+        <endpoint endpoint-name="NoticeStartShipment" interface-name="ns6:NoticeShipmentStartedPortType" name="endpoint5" service-name="ns2:CA02Service2"/>
+        <endpoint endpoint-name="NoticeFinishShipment" interface-name="ns7:NoticeShipmentFinishPortType" name="endpoint6" service-name="ns2:CA02Service3"/>
+        <endpoint display-name="Client" endpoint-name="ClientServicePortTypeRole_myRole" file-path="bpelModule02.bpel" interface-name="ns3:ClientServicePortType" name="endpoint7" process-name="bpelModule02" service-name="ns8:Client"/>
+        <endpoint display-name="NoticeStarted" endpoint-name="NoticeShipmentStartedPortTypeRole_myRole" file-path="bpelModule02.bpel" interface-name="ns6:NoticeShipmentStartedPortType" name="endpoint8" process-name="bpelModule02" service-name="ns8:NoticeStarted"/>
+        <endpoint display-name="NoticeFinish" endpoint-name="NoticeShipmentFinishPortTypeRole_myRole" file-path="bpelModule02.bpel" interface-name="ns7:NoticeShipmentFinishPortType" name="endpoint9" process-name="bpelModule02" service-name="ns8:NoticeFinish"/>
+        <endpoint display-name="CrmService" endpoint-name="CrmProviderRole_partnerRole" file-path="bpelModule02.bpel" interface-name="ns1:CrmProvider" name="endpoint10" process-name="bpelModule02" service-name="ns8:CrmService"/>
+        <endpoint display-name="RewardService" endpoint-name="RewardProviderRole_partnerRole" file-path="bpelModule02.bpel" interface-name="ns4:RewardProvider" name="endpoint11" process-name="bpelModule02" service-name="ns8:RewardService"/>
+        <endpoint display-name="DeliveryService" endpoint-name="DeliveryProviderRole_partnerRole" file-path="bpelModule02.bpel" interface-name="ns5:DeliveryProvider" name="endpoint12" process-name="bpelModule02" service-name="ns8:DeliveryService"/>
+    </endpoints>
+    <service-units>
+        <service-engine-service-unit artifacts-zip="BpelModule02.jar" component-name="sun-bpel-engine" defined="true" description="Represents this Service Unit" internal="true" name="CA02-BpelModule02" unit-name="BpelModule02" unknown="false" x="392" y="258">
+            <provides endpoint="endpoint7"/>
+            <provides endpoint="endpoint8"/>
+            <provides endpoint="endpoint9"/>
+            <consumes endpoint="endpoint10"/>
+            <consumes endpoint="endpoint11"/>
+            <consumes endpoint="endpoint12"/>
+        </service-engine-service-unit>
+        <binding-component-service-unit artifacts-zip="sun-http-binding.jar" component-name="sun-http-binding" description="Represents this Service Unit" name="CA02-sun-http-binding" unit-name="sun-http-binding">
+            <ports>
+                <port bindingType="soap" x="67" y="277">
+                    <link xlink:href="../jbiasa/CA02.wsdl#xpointer(/definitions/service[@name='CA02Service1']/port[@name='ClientService'])" xlink:type="simple"/>
+                    <consumes endpoint="endpoint2"/>
+                    <provides endpoint="endpoint2"/>
+                </port>
+                <port bindingType="soap" x="67" y="364">
+                    <link xlink:href="../jbiasa/CA02.wsdl#xpointer(/definitions/service[@name='CA02Service2']/port[@name='NoticeStartShipment'])" xlink:type="simple"/>
+                    <consumes endpoint="endpoint5"/>
+                    <provides endpoint="endpoint5"/>
+                </port>
+                <port bindingType="soap" x="67" y="456">
+                    <link xlink:href="../jbiasa/CA02.wsdl#xpointer(/definitions/service[@name='CA02Service3']/port[@name='NoticeFinishShipment'])" xlink:type="simple"/>
+                    <consumes endpoint="endpoint6"/>
+                    <provides endpoint="endpoint6"/>
+                </port>
+                <port x="67" y="197">
+                    <link xlink:href="../jbiServiceUnits/BpelModule02/CrmService.wsdl#xpointer(/definitions/service[@name='CrmProviderService']/port[@name='CrmProviderPort'])" xlink:type="simple"/>
+                    <consumes endpoint="endpoint1"/>
+                    <provides endpoint="endpoint1"/>
+                </port>
+                <port x="67" y="37">
+                    <link xlink:href="../jbiServiceUnits/BpelModule02/DeliveryService.wsdl#xpointer(/definitions/service[@name='DeliveryProviderService']/port[@name='DeliveryProviderPort'])" xlink:type="simple"/>
+                    <consumes endpoint="endpoint4"/>
+                    <provides endpoint="endpoint4"/>
+                </port>
+                <port x="67" y="117">
+                    <link xlink:href="../jbiServiceUnits/BpelModule02/RewardService.wsdl#xpointer(/definitions/service[@name='RewardProviderService']/port[@name='RewardProviderPort'])" xlink:type="simple"/>
+                    <consumes endpoint="endpoint3"/>
+                    <provides endpoint="endpoint3"/>
+                </port>
+            </ports>
+        </binding-component-service-unit>
+    </service-units>
+    <connections>
+        <connection consumer="endpoint12" mode="" provider="endpoint4" route-type="" routing-rule="" state="unchanged"/>
+        <connection consumer="endpoint10" mode="" provider="endpoint1" route-type="" routing-rule="" state="unchanged"/>
+        <connection consumer="endpoint6" mode="" provider="endpoint9" route-type="" routing-rule="" state="unchanged"/>
+        <connection consumer="endpoint5" mode="" provider="endpoint8" route-type="" routing-rule="" state="unchanged"/>
+        <connection consumer="endpoint2" mode="" provider="endpoint7" route-type="" routing-rule="" state="unchanged"/>
+        <connection consumer="endpoint11" mode="" provider="endpoint3" route-type="" routing-rule="" state="unchanged"/>
+    </connections>
+    <porttypes>
+        <link xlink:href="../jbiasa/CA02.wsdl#xpointer(/definitions/portType[@name='dummyCasaPortType'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/BpelModule02/CrmService.wsdl#xpointer(/definitions/portType[@name='CrmProvider'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/BpelModule02/NoticeShipmentFinish.wsdl#xpointer(/definitions/portType[@name='NoticeShipmentFinishPortType'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/BpelModule02/DeliveryService.wsdl#xpointer(/definitions/portType[@name='DeliveryProvider'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/BpelModule02/ClientService.wsdl#xpointer(/definitions/portType[@name='ClientServicePortType'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/BpelModule02/RewardService.wsdl#xpointer(/definitions/portType[@name='RewardProvider'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/BpelModule02/NoticeShipmentStarted.wsdl#xpointer(/definitions/portType[@name='NoticeShipmentStartedPortType'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/CA02.wsdl#xpointer(/definitions/portType[@name='dummyCasaPortType'])" xlink:type="simple"/>
+    </porttypes>
+    <bindings>
+        <link xlink:href="../jbiasa/CA02.wsdl#xpointer(/definitions/binding[@name='casaBinding1'])" xlink:type="simple"/>
+        <link xlink:href="../jbiasa/CA02.wsdl#xpointer(/definitions/binding[@name='casaBinding2'])" xlink:type="simple"/>
+        <link xlink:href="../jbiasa/CA02.wsdl#xpointer(/definitions/binding[@name='casaBinding3'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/BpelModule02/CrmService.wsdl#xpointer(/definitions/binding[@name='CrmProviderPortBinding'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/BpelModule02/DeliveryService.wsdl#xpointer(/definitions/binding[@name='DeliveryProviderPortBinding'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/BpelModule02/RewardService.wsdl#xpointer(/definitions/binding[@name='RewardProviderPortBinding'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/CA02.wsdl#xpointer(/definitions/binding[@name='casaBinding1'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/CA02.wsdl#xpointer(/definitions/binding[@name='casaBinding2'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/CA02.wsdl#xpointer(/definitions/binding[@name='casaBinding3'])" xlink:type="simple"/>
+    </bindings>
+    <services>
+        <link xlink:href="../jbiasa/CA02.wsdl#xpointer(/definitions/service[@name='CA02Service1'])" xlink:type="simple"/>
+        <link xlink:href="../jbiasa/CA02.wsdl#xpointer(/definitions/service[@name='CA02Service2'])" xlink:type="simple"/>
+        <link xlink:href="../jbiasa/CA02.wsdl#xpointer(/definitions/service[@name='CA02Service3'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/BpelModule02/CrmService.wsdl#xpointer(/definitions/service[@name='CrmProviderService'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/BpelModule02/DeliveryService.wsdl#xpointer(/definitions/service[@name='DeliveryProviderService'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/BpelModule02/RewardService.wsdl#xpointer(/definitions/service[@name='RewardProviderService'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/CA02.wsdl#xpointer(/definitions/service[@name='CA02Service1'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/CA02.wsdl#xpointer(/definitions/service[@name='CA02Service2'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/CA02.wsdl#xpointer(/definitions/service[@name='CA02Service3'])" xlink:type="simple"/>
+    </services>
+    <regions>
+        <region name="WSDL Endpoints" width="150"/>
+        <region name="JBI Modules" width="1015"/>
+        <region name="External Modules" width="200"/>
+    </regions>
+</casa>

@@ -1,0 +1,159 @@
+<definitions name="DeliveryService"
+    targetNamespace="http://j2ee.netbeans.org/wsdl/BpelModule02/src/DeliveryService"
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:rest="http://schemas.sun.com/jbi/wsdl-extensions/rest/"
+    xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:tns="http://j2ee.netbeans.org/wsdl/BpelModule02/src/DeliveryService">
+    <types>
+        <xsd:schema targetNamespace="http://j2ee.netbeans.org/wsdl/BpelModule02/src/DeliveryService">
+            <xsd:import namespace="http://ws.udc.es/ia02/xml" schemaLocation="DeliveryService.xsd"/>
+        </xsd:schema>
+    </types>
+    <message name="findShipmentRequest">
+        <part name="part1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="xsd:anyType"/>
+    </message>
+    <message name="findShipmentResponse">
+        <part name="part1" xmlns:ns="http://ws.udc.es/ia02/xml" element="ns:shipment"/>
+    </message>
+    <message name="createShipmentRequest">
+        <part name="part1" xmlns:ns="http://ws.udc.es/ia02/xml" element="ns:shipment"/>
+    </message>
+    <message name="createShipmentResponse">
+        <part name="part1" xmlns:ns="http://ws.udc.es/ia02/xml" element="ns:shipment"/>
+    </message>
+    <portType name="RestOutboundPortType">
+        <operation name="findShipment">
+            <input name="findShipmentInput" xmlns:tns="http://j2ee.netbeans.org/wsdl/BpelModule02/src/DeliveryService" message="tns:findShipmentRequest"/>
+            <output name="findShipmentOutput" xmlns:tns="http://j2ee.netbeans.org/wsdl/BpelModule02/src/DeliveryService" message="tns:findShipmentResponse"/>
+        </operation>
+        <operation name="createShipment">
+            <input name="createShipmentInput" xmlns:tns="http://j2ee.netbeans.org/wsdl/BpelModule02/src/DeliveryService" message="tns:createShipmentRequest"/>
+            <output name="createShipmentOutput" xmlns:tns="http://j2ee.netbeans.org/wsdl/BpelModule02/src/DeliveryService" message="tns:createShipmentResponse"/>
+        </operation>
+    </portType>
+    <binding name="RestOutboundBinding" type="tns:RestOutboundPortType">
+        <rest:binding/>
+        <operation name="findShipment">
+            <rest:operation>
+&lt;![CDATA[
+# required, URL of external resource
+# for example: http://somehost.com/users/{id}/address
+url=http://localhost:10000/rs-deliveries-service/shipment/{id}
+
+# optional, HTTP verb GET, PUT, POST, DELETE, HEAD to access the resource, default to GET
+method=GET
+
+# optional, acceptable media types of response can be added as array elements in JSON format
+# Valid types are application/json, application/xml, text/xml and text/plain
+# Binary, HL7 types are supported. Consult the documentation to get the complete list of the MIME type supported by OpenESB
+accept-types=[ "application/xml" ]
+
+# optional, content type of outgoing payload, defaults to any type
+# valid types are application/json, application/xml, application/x-www-form-urlencoded, text/xml and text/plain
+# Binary, HL7 types are supported. Consult the documentation to get the complete list of the MIME type supported by OpenESB
+content-type=application/xml
+
+# optional, preferred natural languages for the response, added as array elements in JSON format
+accept-languages=[ ]
+
+# optional, additional custom HTTP headers can be added as pairs in JSON format in this property
+# for example:  { "authorization" : "257984234", "last-modifed" : "2009-04-23:12:00:00" }
+headers={ }
+
+# optional, style for the parameters, valid values are QUERY, MATRIX, defaults to QUERY
+param-style=Query
+
+# optional, additional custom HTTP parameters can be added as pairs in JSON format in this property
+# for example:  { "userid" : "abc" , "userpassword" : "123" }
+params={ }
+
+# optional, adding HTTP Basic Authentication header to the HTTP request,
+# if the two properties below are specified
+basic-auth-username=
+basic-auth-password=
+
+# optional, if the JSON document expected for a request has no root, remove it with the option request-root-removed
+request-root-removed=false
+
+#optional,if the response of a REST request has no root, you can add one with this option response-root-required. 
+response-root-required=false
+
+#The root name element is defined by response-root-name.
+response-root-name=myRoot
+
+]]&gt;</rest:operation>
+            <input name="findShipmentInput"/>
+            <output name="findShipmentOutput"/>
+        </operation>
+        <operation name="createShipment">
+            <rest:operation>
+&lt;![CDATA[
+# required, URL of external resource
+# for example: http://somehost.com/users/{id}/address
+url=http://localhost:10000/rs-deliveries-service/shipment/
+
+# optional, HTTP verb GET, PUT, POST, DELETE, HEAD to access the resource, default to GET
+method=POST
+
+# optional, acceptable media types of response can be added as array elements in JSON format
+# Valid types are application/json, application/xml, text/xml and text/plain
+# Binary, HL7 types are supported. Consult the documentation to get the complete list of the MIME type supported by OpenESB
+accept-types=[ "application/xml" ]
+
+# optional, content type of outgoing payload, defaults to any type
+# valid types are application/json, application/xml, application/x-www-form-urlencoded, text/xml and text/plain
+# Binary, HL7 types are supported. Consult the documentation to get the complete list of the MIME type supported by OpenESB
+content-type=application/xml
+
+# optional, preferred natural languages for the response, added as array elements in JSON format
+accept-languages=[ ]
+
+# optional, additional custom HTTP headers can be added as pairs in JSON format in this property
+# for example:  { "authorization" : "257984234", "last-modifed" : "2009-04-23:12:00:00" }
+headers={ }
+
+# optional, style for the parameters, valid values are QUERY, MATRIX, defaults to QUERY
+param-style=Query
+
+# optional, additional custom HTTP parameters can be added as pairs in JSON format in this property
+# for example:  { "userid" : "abc" , "userpassword" : "123" }
+params={ }
+
+# optional, adding HTTP Basic Authentication header to the HTTP request,
+# if the two properties below are specified
+basic-auth-username=
+basic-auth-password=
+
+# optional, if the JSON document expected for a request has no root, remove it with the option request-root-removed
+request-root-removed=false
+
+#optional,if the response of a REST request has no root, you can add one with this option response-root-required. 
+response-root-required=false
+
+#The root name element is defined by response-root-name.
+response-root-name=myRoot
+
+]]&gt;</rest:operation>
+            <input name="createShipmentInput"/>
+            <output name="createShipmentOutput"/>
+        </operation>
+    </binding>
+    <service name="RestOutboundService">
+        <port name="RestOutboundWSDL_OutboundPort" binding="tns:RestOutboundBinding">
+            <rest:address/>
+        </port>
+    </service>
+    <plnk:partnerLinkType name="RestOutboundWSDL">
+        <!-- A partner link type is automatically generated when a new port type
+        is added. Partner link types are used by BPEL processes.
+
+        In a BPEL process, a partner link represents the interaction between
+        the BPEL process and a partner service. Each partner link is associated
+        with a partner link type.
+
+        A partner link type characterizes the conversational relationship
+        between two services. The partner link type can have one or two roles.-->
+        <plnk:role name="RestOutboundPortTypeRole" portType="tns:RestOutboundPortType"/>
+    </plnk:partnerLinkType>
+</definitions>

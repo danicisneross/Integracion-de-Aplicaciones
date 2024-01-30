@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<definitions
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="WizardCorrelationProperties.wsdl" targetNamespace="http://enterprise.netbeans.org/bpel/WizardCorrelationProperties" xmlns:vprop="http://docs.oasis-open.org/wsbpel/2.0/varprop" xmlns:ns="http://rs.udc.es/delivery" xmlns:ns1="http://j2ee.netbeans.org/wsdl/BpelModule02/src/NoticeShipmentStarted" xmlns:tns="http://enterprise.netbeans.org/bpel/WizardCorrelationProperties" xmlns:ns2="http://j2ee.netbeans.org/wsdl/BpelModule02/src/NoticeShipmentFinish">
+    <import namespace="http://rs.udc.es/delivery" location="DeliveryService.wsdl"/>
+    <import namespace="http://j2ee.netbeans.org/wsdl/BpelModule02/src/NoticeShipmentStarted" location="NoticeShipmentStarted.wsdl"/>
+    <import namespace="http://j2ee.netbeans.org/wsdl/BpelModule02/src/NoticeShipmentFinish" location="NoticeShipmentFinish.wsdl"/>
+    <types>
+        <xsd:schema targetNamespace="http://enterprise.netbeans.org/bpel/WizardCorrelationProperties">
+            <xsd:import namespace="http://rs.udc.es/delivery" schemaLocation="http://localhost:7070/rs-deliveries-wscontrib/services/DeliveryService?xsd=1"/>
+        </xsd:schema>
+    </types>
+    <vprop:property name="wzrd_prop_shipmentId_long" type="xsd:long"/>
+    <vprop:propertyAlias propertyName="tns:wzrd_prop_shipmentId_long" messageType="ns:createShipmentResponse" part="parameters">
+        <vprop:query>/ns:createShipmentResponse/return/shipmentId</vprop:query>
+    </vprop:propertyAlias>
+    <vprop:propertyAlias propertyName="tns:wzrd_prop_shipmentId_long" messageType="ns1:NoticeShipmentStartedOperationRequest" part="idShipment"/>
+    <vprop:propertyAlias propertyName="tns:wzrd_prop_shipmentId_long" messageType="ns2:NoticeShipmentFinishOperationRequest" part="idShipment"/>
+</definitions>

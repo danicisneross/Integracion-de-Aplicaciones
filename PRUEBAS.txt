@@ -1,0 +1,93 @@
+-Compilar el proyecto
+mvn install
+-Arrancar servicio
+cd rs-deliveries-service/
+mvn jetty:run
+-Configuración del cliente (XML o JSON)
+En rs-deliveries-client/src/main/resources/ConfigurationParameters.properties comentar/descomentar las líneas referentes al mediaType
+1. Añadir dos clientes (nombre, CIF, dirección)
+mvn exec:java -Dexec.mainClass="es.udc.rs.deliveries.client.ui.DeliveryServiceClient" -Dexec.args="-addCustomer 'Universidade da Coruña' 12345678J 'Elviña s/n'"
+mvn exec:java -Dexec.mainClass="es.udc.rs.deliveries.client.ui.DeliveryServiceClient" -Dexec.args="-addCustomer 'Ayuntamiento de A Coruña' 11111111J 'María Pita s/n'"
+2. [SOAPUI]: Actualizar cliente (identificador de cliente, nombre, CIF, dirección)
+PUT http://localhost:10000/rs-deliveries-service/customer/1
+En el body:
+XML:
+<customer xmlns="http://ws.udc.es/ia02/xml" customerId="1">    
+    <name>Concello de A Coruña</name>
+    <Cif>22222222J</Cif>
+    <address>María Pita nº1</address>
+</customer>
+JSON:
+{
+    "customerId": "1",
+    "name": "Concello de A Coruña",
+    "Cif": "22222222J",
+    "address" : "María Pita nº1"
+}
+
+3. [SOAPUI]: Buscar cliente por id (identificador de cliente)
+GET http://localhost:10000/rs-deliveries-service/customer/9999
+GET http://localhost:10000/rs-deliveries-service/customer/1
+4. [SOAPUI] Buscar cliente por palabras clave (palabras clave)
+GET http://localhost:10000/rs-deliveries-service/customer/?keywords=Coruña
+GET http://localhost:10000/rs-deliveries-service/customer/?keywords=Universidade
+5. [SOAPUI] Crear envío (identificador de cliente, referencia del paquete, dirección)
+POST http://localhost:10000/rs-deliveries-service/shipment/
+En el body:
+XML:
+<shipment xmlns="http://ws.udc.es/ia02/xml">
+    <customerId>1</customerId>
+    <packageReference>1</packageReference>
+    <address>Plaza de Pontevedra nº1</address>
+</shipment>
+JSON:
+{
+    "customerId": "1",
+    "packageReference": "1",
+    "address" : "Plaza de Pontevedra nº1"
+}
+POST http://localhost:10000/rs-deliveries-service/shipment/
+En el body:
+XML:
+<shipment xmlns="http://ws.udc.es/ia02/xml">
+    <customerId>1</customerId>
+    <packageReference>2</packageReference>
+    <address>Plaza de Pontevedra nº2</address>
+</shipment>
+JSON:
+{
+    "customerId": "1",
+    "packageReference": "2",
+    "address" : "Plaza de Pontevedra nº2"
+}
+POST http://localhost:10000/rs-deliveries-service/shipment/
+En el body:
+<shipment xmlns="http://ws.udc.es/ia02/xml">
+    <customerId>1</customerId>
+    <packageReference>3</packageReference>
+    <address>Plaza de Pontevedra nº3</address>
+</shipment>
+JSON:
+{
+    "customerId": "1",
+    "packageReference": "3",
+    "address" : "Plaza de Pontevedra nº3"
+}
+6. Cambiar estado (identificador de envío, estado)
+mvn exec:java -Dexec.mainClass="es.udc.rs.deliveries.client.ui.DeliveryServiceClient" -Dexec.args="-changeState 1 REJECTED"
+mvn exec:java -Dexec.mainClass="es.udc.rs.deliveries.client.ui.DeliveryServiceClient" -Dexec.args="-changeState 1 SENT"
+mvn exec:java -Dexec.mainClass="es.udc.rs.deliveries.client.ui.DeliveryServiceClient" -Dexec.args="-changeState 1 DELIVERED"
+7. [SOAPUI] Cancelar envío (identificador de envío)
+POST http://localhost:10000/rs-deliveries-service/shipment/2/cancel
+8. [SOAPUI] Buscar envío (identificador de envío)
+GET http://localhost:10000/rs-deliveries-service/shipment/1
+9. Buscar envíos de un cliente (identificador de cliente y estado. Si no se hizo la parte
+opcional de hipermedia, indicar también primer envío del bloque y número de envíos a
+recuperar). Si no se indica estado (o se indica un token especial “ANY”, se devolverán
+todos los envíos sin filtrar por estado).
+mvn exec:java -Dexec.mainClass="es.udc.rs.deliveries.client.ui.DeliveryServiceClient" -Dexec.args="-findByCustomer 1 PENDING"
+mvn exec:java -Dexec.mainClass="es.udc.rs.deliveries.client.ui.DeliveryServiceClient" -Dexec.args="-findByCustomer 1 ANY"
+10. Eliminar cliente (identificador de cliente)
+mvn exec:java -Dexec.mainClass="es.udc.rs.deliveries.client.ui.DeliveryServiceClient" -Dexec.args="-deleteCustomer 9999"
+mvn exec:java -Dexec.mainClass="es.udc.rs.deliveries.client.ui.DeliveryServiceClient" -Dexec.args="-deleteCustomer 1"
+mvn exec:java -Dexec.mainClass="es.udc.rs.deliveries.client.ui.DeliveryServiceClient" -Dexec.args="-deleteCustomer 2"
